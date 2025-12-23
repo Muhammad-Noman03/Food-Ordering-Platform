@@ -1,0 +1,70 @@
+# Ignore node_modules, build, and dependency folders
+node_modules/
+bin/
+obj/
+.env
+.env.*
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Ignore Python cache and virtualenv
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+env/
+venv/
+ENV/
+
+# Ignore VSCode and JetBrains IDE settings
+.vscode/
+.idea/
+
+# Ignore OS files
+.DS_Store
+Thumbs.db
+
+# Ignore log files
+*.log
+
+# Ignore sensitive config
+appsettings.Development.json
+appsettings.Local.json
+secrets.json
+
+# Ignore database files
+*.mdf
+*.ldf
+*.db
+*.sqlite
+
+# Ignore images and assets (optional, comment out if you want to keep)
+# assets/
+
+# Ignore uploads (if any)
+uploads/
+
+# Ignore test output
+coverage/
+
+# Ignore package lock files (optional)
+package-lock.json
+yarn.lock
+
+# Ignore backup files
+*.bak
+*.tmp
+~$*
+
+# Ignore publish output
+publish/
+wwwroot/
+
+# Ignore tools output
+/tools/*.png
+/tools/*.jpg
+/tools/*.jpeg
+/tools/*.bmp
+/tools/*.gif

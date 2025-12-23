@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodieExpress - Menu</title>
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <img src="assets/favicon.png" alt="FoodieExpress Logo" class="navbar-logo">
+                <span>FoodieExpress</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">
+                            <i class="fas fa-home me-1"></i>Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="menu.html">
+                            <i class="fas fa-hamburger me-1"></i>Menu
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">
+                            <i class="fas fa-envelope me-1"></i>Contact
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html" id="loginNavBtn">
+                            <i class="fas fa-user me-1"></i><span id="loginNavText">Login</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="cartBtn">
+                            <i class="fas fa-shopping-cart me-1"></i>Cart
+                            <span class="badge bg-danger cart-count">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header bg-dark text-white">
+        <div class="container">
+            <div class="row align-items-center py-5">
+                <div class="col-lg-8">
+                    <h1 class="display-4 fw-bold">
+                        <i class="fas fa-hamburger text-warning me-3"></i>Our Menu
+                    </h1>
+                    <p class="lead">Explore our delicious range of dishes prepared with love and fresh ingredients.</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Search and Filter Section -->
+    <section class="py-4 bg-light sticky-top" style="top: 56px; z-index: 1000;">
+        <div class="container">
+            <div class="row g-3 align-items-center">
+                <div class="col-lg-4">
+                    <div class="input-group">
+                        <span class="input-group-text bg-white"><i class="fas fa-search"></i></span>
+                        <input type="text" class="form-control" id="searchInput" placeholder="Search dishes...">
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="d-flex flex-wrap gap-2" id="categoryFilters">
+                        <button class="btn btn-dark category-btn active" data-category="all">
+                            <i class="fas fa-th me-1"></i>All
+                        </button>
+                        <button class="btn btn-outline-dark category-btn" data-category="pizza">
+                            <i class="fas fa-pizza-slice me-1"></i>Pizza
+                        </button>
+                        <button class="btn btn-outline-dark category-btn" data-category="burger">
+                            <i class="fas fa-hamburger me-1"></i>Burgers
+                        </button>
+                        <button class="btn btn-outline-dark category-btn" data-category="pasta">
+                            <i class="fas fa-utensils me-1"></i>Pasta
+                        </button>
+                        <button class="btn btn-outline-dark category-btn" data-category="salad">
+                            <i class="fas fa-leaf me-1"></i>Salads
+                        </button>
+                        <button class="btn btn-outline-dark category-btn" data-category="dessert">
+                            <i class="fas fa-ice-cream me-1"></i>Desserts
+                        </button>
+                        <button class="btn btn-outline-dark category-btn" data-category="drinks">
+                            <i class="fas fa-glass-cheers me-1"></i>Drinks
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Items Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row g-4" id="menuItems">
+                <!-- Menu items will be loaded dynamically -->
+            </div>
+            
+            <!-- Loading Spinner -->
+            <div class="text-center py-5" id="loadingSpinner">
+                <div class="spinner-border text-warning" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <p class="mt-2 text-muted">Loading delicious dishes...</p>
+            </div>
+
+            <!-- No Results Message -->
+            <div class="text-center py-5 d-none" id="noResults">
+                <i class="fas fa-search fa-4x text-muted mb-3"></i>
+                <h4>No dishes found</h4>
+                <p class="text-muted">Try adjusting your search or filter criteria</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Special Offers Section -->
+    <section class="py-5 bg-warning">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h3 class="fw-bold"><i class="fas fa-tags me-2"></i>Special Offer!</h3>
+                    <p class="lead mb-0">Order any 2 pizzas and get 20% off on your total order!</p>
+                </div>
+                <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
+                    <span class="badge bg-dark fs-5 p-3">Use Code: PIZZA20</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <h5 class="d-flex align-items-center">
+                        <img src="assets/favicon.png" alt="FoodieExpress Logo" class="footer-logo">
+                        FoodieExpress
+                    </h5>
+                    <p class="text-muted">
+                        Delivering happiness one meal at a time. Quality food, fast delivery, 
+                        and excellent customer service.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="text-white me-3"><i class="fab fa-facebook fa-lg"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-twitter fa-lg"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-instagram fa-lg"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-youtube fa-lg"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <h6>Quick Links</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html" class="text-muted">Home</a></li>
+                        <li><a href="menu.html" class="text-muted">Menu</a></li>
+                        <li><a href="contact.html" class="text-muted">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3">
+                    <h6>Contact Info</h6>
+                    <ul class="list-unstyled text-muted">
+                        <li><i class="fas fa-map-marker-alt me-2"></i>123 Food Street, City</li>
+                        <li><i class="fas fa-phone me-2"></i>+1 234 567 890</li>
+                        <li><i class="fas fa-envelope me-2"></i>info@foodieexpress.com</li>
+                    </ul>
+                </div>
+                <div class="col-lg-3">
+                    <h6>Opening Hours</h6>
+                    <ul class="list-unstyled text-muted">
+                        <li>Mon - Fri: 10:00 AM - 10:00 PM</li>
+                        <li>Saturday: 11:00 AM - 11:00 PM</li>
+                        <li>Sunday: 12:00 PM - 9:00 PM</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="text-center text-muted">
+                <p class="mb-0">&copy; 2025 FoodieExpress. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Modal -->
+    <div class="modal fade" id="cartModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-dark text-white">
+                    <h5 class="modal-title"><i class="fas fa-shopping-cart me-2"></i>Your Cart</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="cartItems">
+                    <!-- Cart items will be loaded dynamically -->
+                </div>
+                <div class="modal-footer">
+                    <div class="d-flex justify-content-between w-100 align-items-center">
+                        <h5>Total: $<span id="cartTotal">0.00</span></h5>
+                        <div>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Continue Shopping</button>
+                            <button type="button" class="btn btn-success" id="checkoutBtn">
+                                <i class="fas fa-credit-card me-2"></i>Checkout
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Item Detail Modal -->
+    <div class="modal fade" id="itemDetailModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="itemDetailTitle">Item Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <img src="" alt="" id="itemDetailImage" class="img-fluid rounded">
+                        </div>
+                        <div class="col-md-6">
+                            <h4 id="itemDetailName"></h4>
+                            <p class="text-muted" id="itemDetailDescription"></p>
+                            <h3 class="text-success" id="itemDetailPrice"></h3>
+                            <div class="mb-3">
+                                <label class="form-label">Quantity</label>
+                                <div class="input-group" style="width: 150px;">
+                                    <button class="btn btn-outline-secondary" type="button" id="decreaseQty">-</button>
+                                    <input type="number" class="form-control text-center" id="itemQuantity" value="1" min="1">
+                                    <button class="btn btn-outline-secondary" type="button" id="increaseQty">+</button>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Special Instructions (Optional)</label>
+                                <textarea class="form-control" id="specialInstructions" rows="2" 
+                                    placeholder="E.g., No onions, extra cheese..."></textarea>
+                            </div>
+                            <button class="btn btn-warning btn-lg w-100" id="addToCartFromModal">
+                                <i class="fas fa-cart-plus me-2"></i>Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Order Success Modal -->
+    <div class="modal fade" id="orderSuccessModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content text-center">
+                <div class="modal-body p-5">
+                    <div class="success-checkmark">
+                        <i class="fas fa-check-circle text-success fa-5x mb-4"></i>
+                    </div>
+                    <h4 class="mb-3">Order Placed Successfully!</h4>
+                    <p class="text-muted">Thank you for your order. Your food is being prepared and will be delivered soon.</p>
+                    <p><strong>Order ID: <span id="orderId"></span></strong></p>
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Continue Shopping</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/menu.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>

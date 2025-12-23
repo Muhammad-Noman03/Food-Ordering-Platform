@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodieExpress - Login</title>
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <style>
+        /* Futuristic Background */
+        .login-section {
+            min-height: 100vh;
+            padding-top: 100px;
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .login-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 107, 53, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(120, 119, 198, 0.1) 0%, transparent 30%);
+            pointer-events: none;
+        }
+        
+        /* Floating particles animation */
+        .login-section::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, rgba(255,255,255,0.3), transparent),
+                radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.2), transparent),
+                radial-gradient(2px 2px at 50px 160px, rgba(255,255,255,0.3), transparent),
+                radial-gradient(2px 2px at 90px 40px, rgba(255,255,255,0.2), transparent),
+                radial-gradient(2px 2px at 130px 80px, rgba(255,255,255,0.3), transparent),
+                radial-gradient(2px 2px at 160px 120px, rgba(255,255,255,0.2), transparent);
+            background-repeat: repeat;
+            background-size: 200px 200px;
+            animation: twinkle 5s ease-in-out infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+        
+        .login-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            box-shadow: 
+                0 25px 80px rgba(0, 0, 0, 0.4),
+                0 0 40px rgba(120, 119, 198, 0.1),
+                inset 0 0 60px rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+            max-width: 1000px;
+            margin: 0 auto;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .login-left {
+            background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 50%, #ffd93d 100%);
+            padding: 60px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .login-left::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+        
+        .login-left h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+            position: relative;
+        }
+        
+        .login-left p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            position: relative;
+        }
+        
+        .login-left .food-icons {
+            font-size: 3.5rem;
+            margin-top: 25px;
+            position: relative;
+        }
+        
+        .login-left .food-icons i {
+            animation: bounce 2s ease-in-out infinite;
+            display: inline-block;
+        }
+        
+        .login-left .food-icons i:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .login-left .food-icons i:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .user-avatar {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.1) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 3rem;
+            color: white;
+            border: 4px solid rgba(255,255,255,0.4);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            position: relative;
+            backdrop-filter: blur(10px);
+        }
+        
+        .user-avatar::after {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            background: linear-gradient(135deg, rgba(255,255,255,0.5), transparent) border-box;
+            -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+        }
+        
+        .login-right {
+            padding: 50px 40px;
+            background: linear-gradient(180deg, #ffffff 0%, #f8f9ff 100%);
+        }
+        
+        .login-right h3 {
+            color: #1a1a2e;
+            font-weight: 800;
+            margin-bottom: 8px;
+            font-size: 1.6rem;
+        }
+        
+        .login-right .subtitle {
+            color: #666;
+            margin-bottom: 25px;
+            font-size: 0.95rem;
+        }
+        
+        .form-floating {
+            margin-bottom: 20px;
+        }
+        
+        .form-floating input {
+            border-radius: 14px;
+            border: 2px solid #e8e8f0;
+            padding: 18px 15px;
+            height: auto;
+            font-size: 1rem;
+            background: #fafafe;
+            transition: all 0.3s ease;
+        }
+        
+        .form-floating input:focus {
+            border-color: #ff6b35;
+            box-shadow: 0 0 0 4px rgba(255, 107, 53, 0.15);
+            background: #fff;
+        }
+        
+        .form-floating label {
+            padding: 18px 15px;
+            color: #888;
+        }
+        
+        .btn-login {
+            background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 50%, #ffd93d 100%);
+            border: none;
+            border-radius: 14px;
+            padding: 16px 30px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            width: 100%;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .btn-login:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 12px 35px rgba(255, 107, 53, 0.45);
+        }
+        
+        .btn-login:active {
+            transform: translateY(0) scale(0.98);
+        }
+        
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 25px 0;
+        }
+        
+        .divider::before,
+        .divider::after {
+            content: "";
+            flex: 1;
+            border-bottom: 2px solid #e8e8f0;
+        }
+        
+        .divider span {
+            padding: 0 20px;
+            color: #aaa;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .guest-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .guest-link a {
+            color: #ff6b35;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            padding: 10px 20px;
+            border-radius: 10px;
+            background: rgba(255, 107, 53, 0.08);
+        }
+        
+        .guest-link a:hover {
+            background: rgba(255, 107, 53, 0.15);
+            transform: translateX(5px);
+        }
+        
+        .benefits-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 30px;
+            position: relative;
+        }
+        
+        .benefits-list li {
+            padding: 12px 0;
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+            transition: transform 0.3s ease;
+        }
+        
+        .benefits-list li:hover {
+            transform: translateX(5px);
+        }
+        
+        .benefits-list li i {
+            margin-right: 12px;
+            font-size: 1.3rem;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+        }
+        
+        .order-history {
+            margin-top: 20px;
+            text-align: left;
+            max-height: 400px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+        
+        .order-history::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .order-history::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        
+        .order-history::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #ff6b35, #ffd93d);
+            border-radius: 10px;
+        }
+        
+        .order-item {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9ff 100%);
+            border-radius: 16px;
+            padding: 18px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .order-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, #ff6b35, #ffd93d);
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .order-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        
+        .order-item .order-number {
+            font-weight: 700;
+            color: #1a1a2e;
+            font-size: 0.95rem;
+        }
+        
+        .order-item .order-total {
+            font-weight: 800;
+            color: #28a745;
+            font-size: 1.1rem;
+        }
+        
+        .order-item .order-items-list {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px dashed #e0e0e0;
+        }
+        
+        .order-item .food-name {
+            display: inline-flex;
+            align-items: center;
+            background: linear-gradient(135deg, #fff5f0 0%, #fff8e8 100%);
+            padding: 5px 12px;
+            border-radius: 20px;
+            margin: 3px 5px 3px 0;
+            font-size: 0.8rem;
+            color: #555;
+            border: 1px solid rgba(255, 107, 53, 0.15);
+        }
+        
+        .order-item .food-name i {
+            color: #ff6b35;
+            margin-right: 5px;
+            font-size: 0.75rem;
+        }
+        
+        .btn-outline-danger {
+            border: 2px solid #dc3545;
+            border-radius: 14px;
+            padding: 14px 20px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-outline-danger:hover {
+            background: linear-gradient(135deg, #dc3545, #ff6b6b);
+            border-color: transparent;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(220, 53, 69, 0.3);
+        }
+        
+        /* Status badges */
+        .badge {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        @media (max-width: 768px) {
+            .login-left {
+                padding: 40px 25px;
+            }
+            
+            .login-left h2 {
+                font-size: 2rem;
+            }
+            
+            .login-right {
+                padding: 40px 25px;
+            }
+            
+            .order-history {
+                max-height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <img src="assets/favicon.png" alt="FoodieExpress Logo" class="navbar-logo">
+                <span>FoodieExpress</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">
+                            <i class="fas fa-home me-1"></i>Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="menu.html">
+                            <i class="fas fa-hamburger me-1"></i>Menu
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">
+                            <i class="fas fa-envelope me-1"></i>Contact
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="login.html" id="loginNavBtn">
+                            <i class="fas fa-user me-1"></i><span id="loginNavText">Login</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Login Section -->
+    <section class="login-section">
+        <div class="container">
+            <!-- Login Form (shown when not logged in) -->
+            <div class="login-card" id="loginFormCard">
+                <div class="row g-0">
+                    <div class="col-md-5 login-left">
+                        <h2>Welcome to FoodieExpress!</h2>
+                        <p>Login to order delicious food, track your orders, and enjoy exclusive offers.</p>
+                        <div class="food-icons">
+                            <i class="fas fa-pizza-slice me-2"></i>
+                            <i class="fas fa-burger me-2"></i>
+                            <i class="fas fa-ice-cream"></i>
+                        </div>
+                        <ul class="benefits-list">
+                            <li><i class="fas fa-check-circle"></i> Fast & Easy Ordering</li>
+                            <li><i class="fas fa-check-circle"></i> Track Your Orders</li>
+                            <li><i class="fas fa-check-circle"></i> View Order History</li>
+                            <li><i class="fas fa-check-circle"></i> Exclusive Member Deals</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-7 login-right">
+                        <h3>Login / Sign Up</h3>
+                        <p class="subtitle">Enter your details to continue</p>
+                        
+                        <form id="loginForm">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="fullName" placeholder="Full Name" required>
+                                <label for="fullName"><i class="fas fa-user me-2"></i>Full Name *</label>
+                                <div class="invalid-feedback">Please enter your full name</div>
+                            </div>
+                            
+                            <div class="form-floating">
+                                <input type="email" class="form-control" id="email" placeholder="Email Address" required>
+                                <label for="email"><i class="fas fa-envelope me-2"></i>Email Address *</label>
+                                <div class="invalid-feedback">Please enter a valid email address</div>
+                            </div>
+                            
+                            <div class="form-floating">
+                                <input type="tel" class="form-control" id="phone" placeholder="Phone Number">
+                                <label for="phone"><i class="fas fa-phone me-2"></i>Phone Number (Optional)</label>
+                            </div>
+                            
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="address" placeholder="Delivery Address">
+                                <label for="address"><i class="fas fa-map-marker-alt me-2"></i>Delivery Address (Optional)</label>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-login text-white mt-3" id="loginBtn">
+                                <i class="fas fa-sign-in-alt me-2"></i>Continue
+                            </button>
+                            
+                            <div id="loginMessage" class="alert mt-3" style="display: none;"></div>
+                        </form>
+                        
+                        <div class="divider">
+                            <span>or</span>
+                        </div>
+                        
+                        <div class="guest-link">
+                            <a href="menu.html"><i class="fas fa-utensils me-2"></i>Browse Menu as Guest</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- User Profile (shown when logged in) -->
+            <div class="login-card" id="userProfileCard" style="display: none;">
+                <div class="row g-0">
+                    <div class="col-md-5 login-left">
+                        <div class="user-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h2 id="welcomeUserName">Welcome!</h2>
+                        <p id="userEmail">user@example.com</p>
+                        <ul class="benefits-list">
+                            <li><i class="fas fa-check-circle"></i> Member since <span id="memberSince">2024</span></li>
+                            <li><i class="fas fa-check-circle"></i> <span id="totalOrders">0</span> Orders placed</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-7 login-right">
+                        <h3><i class="fas fa-history me-2"></i>Your Order History</h3>
+                        <p class="subtitle">View your recent orders</p>
+                        
+                        <div id="orderHistoryList" class="order-history">
+                            <div class="text-center text-muted py-4">
+                                <i class="fas fa-shopping-bag fa-3x mb-3"></i>
+                                <p>No orders yet. Start ordering!</p>
+                            </div>
+                        </div>
+                        
+                        <div class="row mt-4">
+                            <div class="col-6">
+                                <a href="menu.html" class="btn btn-login text-white w-100">
+                                    <i class="fas fa-utensils me-2"></i>Order Now
+                                </a>
+                            </div>
+                            <div class="col-6">
+                                <button class="btn btn-outline-danger w-100" id="logoutBtn">
+                                    <i class="fas fa-sign-out-alt me-2"></i>Logout
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5 class="d-flex align-items-center">
+                        <img src="assets/favicon.png" alt="FoodieExpress Logo" class="footer-logo">
+                        FoodieExpress
+                    </h5>
+                    <p class="text-muted">Delicious food delivered to your doorstep.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <div class="social-links">
+                        <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-instagram"></i></a>
+                    </div>
+                    <p class="text-muted mt-2">&copy; 2024 FoodieExpress. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>
